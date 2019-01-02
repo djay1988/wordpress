@@ -1,0 +1,18 @@
+//Woocommerce Checkout field Custome validation
+add_action('woocommerce_checkout_process', 'djay1988_phone_validate_checkout_fields');
+
+function djay1988_phone_validate_checkout_fields() {
+    $billing_phone = filter_input(INPUT_POST, 'billing_phone');
+
+    if (strlen(trim($billing_phone)) > 0) {
+        wc_add_notice(__('Invalid <strong>Phone Number</strong>, please check your input.'), 'error');
+    }
+}
+
+
+//Add Text above the proceed to checkout button
+add_action('woocommerce_proceed_to_checkout', 'djay1988_checkout_field');
+
+function djay1988_checkout_field() {
+    echo '<p><small>My Custome Warning Text.</small></p>';
+}
